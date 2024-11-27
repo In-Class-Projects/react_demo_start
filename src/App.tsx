@@ -1,55 +1,25 @@
 import './App.css'
+import DashBoard from "./components/LoginComponents.tsx";
+import {LoginComponents} from "./components/LoginComponents.tsx";
+import {ReactElement} from "react";
 
-import Item from "./components/item.tsx";
-import {Customer} from "./components/item.tsx";
 
 function App() {
 
-    const itemsList = [
-        {
-            title: "Item 1",
-            desc: "Lorem ipsum dolor sit amet",
-        },
-        {
-            title: "Item 2",
-            desc: "Lorem ipsum dolor sit amet",
-        },
-        {
-            title: "Item 3",
-            desc: "Lorem ipsum dolor sit amet",
-        }
-    ]
+    const isLogging : boolean = false;
 
-    const customerList = [
-        {
-            title: "Customer Boy",
-            desc: "Lorem ipsum dolor sit amet",
-        },
-        {
-            title: "Customer Girl",
-            desc: "Lorem ipsum dolor sit amet",
-        },
-        {
-            title: "Customer other",
-            desc: "Lorem ipsum dolor sit amet",
-        }
-    ]
+    let  content: ReactElement;
 
-    const customerArray = [];
-
-    for (const cusArrayElement of customerList) {
-        customerArray.push(
-            <Customer title={cusArrayElement.title} desc={cusArrayElement.desc}/>
-        );
+    if (isLogging) {
+        content = <DashBoard/>
+    } else {
+        content = <LoginComponents/>
     }
 
     return (
         <>
-            {itemsList.map(item => (
-                <Item title={item.title} desc={item.desc}/>
-            ))}
-
-            {customerArray}
+            {content}
+            {isLogging ? <DashBoard /> : <LoginComponents/>}
         </>
     )
 }
