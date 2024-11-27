@@ -1,6 +1,6 @@
 import './App.css'
 
-import ButtonComponent from "./components/ButtonComponent.tsx";
+import AddValueButton from "./components/addValueButton";
 import {useState} from "react";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 
     return (
         <>
-            <ButtonComponent name = {"Count : "+ count} count={count} onClick={handleClick}></ButtonComponent>
+            <AddValueButton name = {"Count : "+ count} count={count} onClick={handleClick}></AddValueButton>
         </>
     )
 }
