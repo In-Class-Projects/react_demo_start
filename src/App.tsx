@@ -1,15 +1,19 @@
 import './App.css'
 
 import ButtonComponent from "./components/ButtonComponent.tsx";
+import {useState} from "react";
 
 function App() {
 
-    let content : string = "DashBoard"
+    // let content : string = "DashBoard"
+    const [content, setContent] = useState('Default Value');
+
 
     function handleClick(type:string){
         console.log('click')
         alert(type + ' clicked')
-        content = type
+        setContent(type)
+
     }
     return (
         <>
