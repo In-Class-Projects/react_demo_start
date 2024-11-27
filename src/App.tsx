@@ -1,14 +1,18 @@
 import './App.css'
 
+import ButtonComponent from "./components/ButtonComponent.tsx";
+
 function App() {
     function handleClick(type:string){
-        console.log(type)
-        alert(type)
+        console.log('click')
+        alert(type + ' clicked')
     }
     return (
-        <div>
-            <button onClick={()=>{handleClick("handleClick")}}>submit</button>
-        </div>
+        <>
+            <ButtonComponent name = "DashBoard" onClick={handleClick}></ButtonComponent>
+            <ButtonComponent name = "Add Customer" onClick={handleClick}></ButtonComponent>
+            <ButtonComponent name = "Delete Customer" onClick={handleClick}></ButtonComponent>
+        </>
     )
 }
 
