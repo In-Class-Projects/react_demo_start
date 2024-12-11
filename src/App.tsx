@@ -4,14 +4,21 @@ import {DashBoard} from "./pages/DashBoard.tsx";
 import {AddCustomer} from "./pages/AddCustomer.tsx";
 import {DeleteCustomer} from "./pages/DeleteCustomer.tsx";
 import {UpdateCustomer} from "./pages/UpdateCustomer.tsx";
+import {RootLayout} from "./components/RootLayout.tsx";
 
 function App() {
 
     const routes = createBrowserRouter([
-        {path: '', element : <DashBoard/>},
-        {path: '/add', element : <AddCustomer/>},
-        {path: '/delete', element : <DeleteCustomer/>},
-        {path: '/update', element : <UpdateCustomer/>},
+        {
+            path: '',
+            element: <RootLayout/>,
+            children : [
+                {path: '', element : <DashBoard/>},
+                {path: '/add', element : <AddCustomer/>},
+                {path: '/delete', element : <DeleteCustomer/>},
+                {path: '/update', element : <UpdateCustomer/>}
+            ]
+        },
     ])
 
     return (
