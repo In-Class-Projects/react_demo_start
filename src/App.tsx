@@ -1,17 +1,20 @@
 import './App.css'
-
 import {useState} from "react";
-import AddValueButton from "./components/AddValueButton.tsx"
+
 
 function App() {
 
-    const [count, setCount] = useState("Add 1");
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
     return (
         <>
-            {/*<button onClick={() => setCount(count + 1)}>Click : {count}</button>*/}
+            <input className={"button"} type="text" placeholder={"First Name"} onChange={e => setFirstName(e.target.value)} />
+            <input type="text" placeholder={"Last Name"} onChange={e => setLastName(e.target.value)} />
 
-            <AddValueButton name ={count} onClick={() => setCount(count + 1)}></AddValueButton>
+            <br/>
+
+            {firstName + " " + lastName}
         </>
     )
 }
