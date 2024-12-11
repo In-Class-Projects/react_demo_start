@@ -1,10 +1,11 @@
+import {Link} from "react-router";
+
 export function DeleteCustomer() {
     return (
         <>
             Delete Customer
             <br/>
-            <a href="/">Go Back</a>
-
+            <Link to={'/'} >Go Back</Link>
         </>
     )
 }
