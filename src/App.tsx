@@ -1,62 +1,22 @@
 import './App.css'
-import {useState} from "react";
-import {Customer} from "./models/Customer.ts";
-
+import {createBrowserRouter, RouterProvider} from "react-router";
+import {DashBoard} from "./pages/DashBoard.tsx";
+import {AddCustomer} from "./pages/AddCustomer.tsx";
+import {DeleteCustomer} from "./pages/DeleteCustomer.tsx";
+import {UpdateCustomer} from "./pages/UpdateCustomer.tsx";
 
 function App() {
-    const [customers, setCustomers] = useState<Customer[]>([])
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
-
-    const addCustomer = () => {
-        const newCustomer = new Customer(name, email, phone, address);
-
-        setCustomers((customers) => [...customers, newCustomer]);
-    }
-
-    const deleteCustomer = () => {
-        setCustomers((customers) => customers.slice(0,-1));
-    }
-
-    const deleteCustomerByEmail = () => {
-        setCustomers((customers) => customers.filter((customer) =>
-            customer.email != email));
-    }
-
-    const updateCustomer = () => {
-        const updateCustomer = customers.map((customer) => customer.email === email ?
-            {...customer, name: name, email: email, phone: phone, address: address} : customer);
-
-        setCustomers(updateCustomer);
-    }
+    const routes = createBrowserRouter([
+        {path: '', element : <DashBoard/>},
+        {path: '/add', element : <AddCustomer/>},
+        {path: '/delete', element : <DeleteCustomer/>},
+        {path: '/update', element : <UpdateCustomer/>},
+    ])
 
     return (
         <>
-            <input name={"name"} type="text" placeholder={"Name"} onChange={(e) =>
-                setName(e.target.value)}/>
-            <input name={"email"} type="text" placeholder={"Email"} onChange={(e) =>
-                setEmail(e.target.value)}/>
-            <input name={"phone"} type="text" placeholder={"Phone Number"} onChange={(e) =>
-                setPhone(e.target.value)}/>
-            <input name={"address"} type="text" placeholder={"Address"} onChange={(e) =>
-                setAddress(e.target.value)}/>
-            <br/>
-            <br/>
-
-            <button onClick={addCustomer}>Add Customer</button>
-            <button onClick={deleteCustomer}>Delete Last Customer</button>
-            <button onClick={deleteCustomerByEmail}>Delete customer by email</button>
-            <button onClick={updateCustomer}>Update customer by email</button>
-
-            <br/>
-
-            {customers.map(customer => (
-                <h2 key={customer.email}>{customer.name + " " + customer.email + " " + customer.phone + " " + customer.address}</h2>
-            ))}
-
+            <RouterProvider router={routes}/>
         </>
     )
 }
