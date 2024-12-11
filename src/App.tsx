@@ -4,17 +4,23 @@ import {useState} from "react";
 
 function App() {
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [customer, setCustomer] = useState({
+        firstName: "",
+        lastName: "",
+    });
 
     return (
         <>
-            <input className={"button"} type="text" placeholder={"First Name"} onChange={e => setFirstName(e.target.value)} />
-            <input type="text" placeholder={"Last Name"} onChange={e => setLastName(e.target.value)} />
+            <input type="text" placeholder={"First Name"} onChange= {(e) =>{
+                setCustomer({...customer, firstName : e.target.value});
+            }}/>
+            <input type="text" placeholder={"Last Name"} onChange= {(e) =>{
+                setCustomer({...customer, lastName : e.target.value});
+            }}/>
 
             <br/>
 
-            {firstName + " " + lastName}
+            {customer.firstName + " " + customer.lastName}
         </>
     )
 }
