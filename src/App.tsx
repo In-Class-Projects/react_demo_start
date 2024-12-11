@@ -21,6 +21,10 @@ function App() {
         setCustomers((customers) => customers.slice(0,-1));
     }
 
+    const deleteCustomerByEmail = () => {
+        setCustomers((customers) => customers.filter((customer) => customer.email != email));
+    }
+
     return (
         <>
             <input name={"name"} type="text" placeholder={"Name"} onChange={(e) => setName(e.target.value)}/>
@@ -31,7 +35,8 @@ function App() {
             <br/>
 
             <button onClick={addCustomer}>Add Customer</button>
-            <button onClick={deleteCustomer}>Delete Customer</button>
+            <button onClick={deleteCustomer}>Delete Last Customer</button>
+            <button onClick={deleteCustomerByEmail}>Delete customer by email</button>
 
             <br/>
 
