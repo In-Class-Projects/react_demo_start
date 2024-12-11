@@ -18,9 +18,11 @@ function App() {
 
     return (
         <>
-            <input name={"firstName"} type="text" placeholder={"First Name"} onChange= {(e) =>{handleInputChange(e)}}/>
-            <input type="text" placeholder={"Last Name"} onChange= {(e) =>{
-                setCustomer({...customer, lastName : e.target.value});
+            <input name={"firstName"} type="text" placeholder={"First Name"} onChange= {(e) =>{
+                handleInputChange(e)
+            }}/>
+            <input name={"lastName"} type="text" placeholder={"Last Name"} onChange= {(e) =>{
+                handleInputChange(e)
             }}/>
 
             <br/>
