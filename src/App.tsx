@@ -22,28 +22,40 @@ function App() {
     }
 
     const deleteCustomerByEmail = () => {
-        setCustomers((customers) => customers.filter((customer) => customer.email != email));
+        setCustomers((customers) => customers.filter((customer) =>
+            customer.email != email));
+    }
+
+    const updateCustomer = () => {
+        const updateCustomer = customers.map((customer) => customer.email === email ?
+            {...customer, name: name, email: email, phone: phone, address: address} : customer);
+
+        setCustomers(updateCustomer);
     }
 
     return (
         <>
-            <input name={"name"} type="text" placeholder={"Name"} onChange={(e) => setName(e.target.value)}/>
-            <input name={"email"} type="text" placeholder={"Email"} onChange={(e) => setEmail(e.target.value)}/>
-            <input name={"phone"} type="text" placeholder={"Phone Number"} onChange={(e) => setPhone(e.target.value)}/>
-            <input name={"address"} type="text" placeholder={"Address"} onChange={(e) => setAddress(e.target.value)}/>
-
+            <input name={"name"} type="text" placeholder={"Name"} onChange={(e) =>
+                setName(e.target.value)}/>
+            <input name={"email"} type="text" placeholder={"Email"} onChange={(e) =>
+                setEmail(e.target.value)}/>
+            <input name={"phone"} type="text" placeholder={"Phone Number"} onChange={(e) =>
+                setPhone(e.target.value)}/>
+            <input name={"address"} type="text" placeholder={"Address"} onChange={(e) =>
+                setAddress(e.target.value)}/>
+            <br/>
             <br/>
 
             <button onClick={addCustomer}>Add Customer</button>
             <button onClick={deleteCustomer}>Delete Last Customer</button>
             <button onClick={deleteCustomerByEmail}>Delete customer by email</button>
+            <button onClick={updateCustomer}>Update customer by email</button>
 
             <br/>
 
             {customers.map(customer => (
                 <h2 key={customer.email}>{customer.name + " " + customer.email + " " + customer.phone + " " + customer.address}</h2>
             ))}
-
 
         </>
     )
