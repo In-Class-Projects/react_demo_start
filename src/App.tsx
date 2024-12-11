@@ -9,21 +9,29 @@ function App() {
         lastName: "",
     });
 
-    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+
+    function addCustomer() {
         setCustomer({
             ...customer,
-            [e.target.name]: e.target.value,
+            firstName: firstName,
+            lastName: lastName,
         })
     }
 
     return (
         <>
             <input name={"firstName"} type="text" placeholder={"First Name"} onChange= {(e) =>{
-                handleInputChange(e)
+                setFirstName(e.target.value)
             }}/>
             <input name={"lastName"} type="text" placeholder={"Last Name"} onChange= {(e) =>{
-                handleInputChange(e)
+                setLastName(e.target.value)
             }}/>
+
+            <br/>
+
+            <button onClick={addCustomer}>Add Customer</button>
 
             <br/>
 
