@@ -3,7 +3,7 @@ import {CustomerContext} from "../components/CustomerProvider.tsx";
 import {useContext} from "react";
 
 export function DashBoard() {
-    const [customers, setCustomers] = useContext(CustomerContext);
+    const [customers, dispatch] = useContext(CustomerContext);
     return (
         <>
             <h2>DashBoard</h2>
@@ -11,4 +11,5 @@ export function DashBoard() {
 
         </>
     )
+
 }
