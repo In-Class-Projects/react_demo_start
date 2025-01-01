@@ -1,11 +1,37 @@
-import {Link} from "react-router";
+import {Link, useNavigate} from "react-router";
+import {useContext, useState} from "react";
+import {CustomerContext} from "../components/CustomerProvider.tsx";
 
 export function UpdateCustomer() {
+
+    const navigation = useNavigate();
+    const [customer, setCustomer] = useContext(CustomerContext)
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
+
+    function handleSubmit() {
+        setCustomer((customer) => customer.filter((customer) => customer.email != email));
+
+        setCustomer(customer.map((customer)=> customer.email === email ? {...customer,
+        name: name, email: email, phone: phone, address: address} : customer ));
+        navigation('/')
+    }
+
     return (
         <>
             <h2>Update Customer</h2>
             <br/>
-            <Link to={'/'} >Go Back</Link>
+
+            <input type="text" placeholder='name' onChange={(e) => setName(e.target.value)}/>
+            <input type="text" placeholder='email' onChange={(e) => setEmail(e.target.value)}/>
+            <input type="text" placeholder='phone' onChange={(e) => setPhone(e.target.value)}/>
+            <input type="text" placeholder='address' onChange={(e) => setAddress(e.target.value)}/>
+
+            <br/>
+            <button onClick={handleSubmit}>Update Customer</button>
 
         </>
     )
