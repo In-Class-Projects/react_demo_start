@@ -2,7 +2,7 @@ import {Link, useNavigate} from "react-router";
 import {useContext, useState} from "react";
 import {CustomerContext} from "../components/CustomerProvider.tsx";
 
-export function DeleteCustomer() {
+export function Delete() {
     const navigation = useNavigate();
     const [customer, setCustomer] = useContext(CustomerContext)
 

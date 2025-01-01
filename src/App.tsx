@@ -1,30 +1,32 @@
-
-first App.tsx
-
 import './App.css'
-import {useReducer, useState} from "react";
-import {initialState, NameReducer} from "./reducers/NameReducer.ts";
-import {FullName} from "./models/FullName.ts";
+import {createBrowserRouter, RouterProvider} from "react-router";
+import {DashBoard} from "./pages/DashBoard.tsx";
+import {ADD} from "./pages/ADD.tsx";
+import {Delete} from "./pages/Delete.tsx";
+import {Update} from "./pages/Update.tsx";
+import {RootLayout} from "./components/RootLayout.tsx";
+import {CustomerProvider} from "./components/CustomerProvider.tsx";
 
 function App() {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
 
-    const [names, dispatch] = useReducer(NameReducer, initialState)
+    const routes = createBrowserRouter([
+        {
+            path: '',
+            element: <RootLayout/>,
+            children : [
+                {path: '', element : <DashBoard/>},
+                {path: '/add', element : <ADD/>},
+                {path: '/delete', element : <Delete/>},
+                {path: '/update', element : <Update/>}
+            ]
+        },
+    ])
 
-    function onSubmit() {
-        const newFullName = new FullName(firstName, lastName);
-        dispatch({type : 'PRINT', payload : newFullName})
-    }
     return (
         <>
-            <input  type="text" placeholder={"First Name"}  onChange={(e) => setFirstName(e.target.value)} />
-            <input type="text" placeholder={"Last Name"} onChange={(e)=>setLastName(e.target.value)}/>
-            <button onClick={()=> onSubmit()}>Print</button>
-
-            <br/>
-
-            {names.map((names : FullName ) => (<div>{names.firstName + ' ' + names.lastName}</div>))}
+            <CustomerProvider>
+                <RouterProvider router={routes} />
+            </CustomerProvider>
         </>
     )
 }

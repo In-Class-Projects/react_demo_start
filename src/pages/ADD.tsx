@@ -4,7 +4,7 @@ import {Customer} from "../models/Customer.ts";
 import {CustomerContext} from "../components/CustomerProvider.tsx";
 
 
-export function AddCustomer() {
+export function ADD() {
     const navigation = useNavigate();
     const [customer, setCustomer] = useContext(CustomerContext)
 
