@@ -29,10 +29,6 @@ export function DeleteCustomer() {
             <br/>
             <button onClick={handleSubmit}>Delete Customer</button>
 
-            <br/>
-            <br/>
-            <br/>
-            <Link to={'/'}>Go Back</Link>
         </>
     )
 }
