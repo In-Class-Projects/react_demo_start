@@ -1,32 +1,27 @@
 import './App.css'
-import {createBrowserRouter, RouterProvider} from "react-router";
-import {DashBoard} from "./pages/DashBoard.tsx";
-import {AddCustomer} from "./pages/AddCustomer.tsx";
-import {DeleteCustomer} from "./pages/DeleteCustomer.tsx";
-import {UpdateCustomer} from "./pages/UpdateCustomer.tsx";
-import {RootLayout} from "./components/RootLayout.tsx";
-import {CustomerProvider} from "./components/CustomerProvider.tsx";
+import {useReducer} from "react";
+
+const initialState = 0;
+
+function CountReducer ( state:number = initialState , action: {type: string, payload: number} ) {
+    switch(action.type) {
+        case 'ADD_COUNTER' :
+            return state + action.payload;
+        case 'REMOVE_COUNTER' :
+            return state - action.payload;
+        default:
+            return state;
+    }
+}
 
 function App() {
 
-    const routes = createBrowserRouter([
-        {
-            path: '',
-            element: <RootLayout/>,
-            children : [
-                {path: '', element : <DashBoard/>},
-                {path: '/add', element : <AddCustomer/>},
-                {path: '/delete', element : <DeleteCustomer/>},
-                {path: '/update', element : <UpdateCustomer/>}
-            ]
-        },
-    ])
-
+    const [count, dispatch] = useReducer(CountReducer, initialState)
     return (
         <>
-            <CustomerProvider>
-                <RouterProvider router={routes} />
-            </CustomerProvider>
+            {count}
+            <button onClick={()=> dispatch({type: 'ADD_COUNTER', payload: 1})}>Increment</button>
+            <button onClick={()=> dispatch({type: 'REMOVE_COUNTER', payload: 1})}>Increment</button>
         </>
     )
 }
